@@ -12,7 +12,7 @@ for(let i=0; i<obj.length; i++){
     document.getElementsByClassName(className)[i].style.backgroundRepeat="repeat-x";
     document.getElementsByClassName("starRatingContainer")[i].style.width = obj[i].starSize*obj[i].maxRating + 10 + "px";
     document.getElementsByClassName(className)[i].style.maxWidth = obj[i].starSize*obj[i].maxRating + "px";
-
+    document.getElementsByClassName(className)[i].title = obj[i].rating;
     if(obj[i].readOnly==="yes"){
         document.getElementsByClassName(className)[i].classList.add("readOnlyStarRating");
     }
@@ -29,12 +29,13 @@ function zmouseMoveStarRating(){
         if(!event.target.classList.contains("starRatingContainer")){
             if(!event.target.classList.contains("readOnlyStarRating")){
             event.target.style.width=(event.clientX-event.target.getBoundingClientRect().left)+"px";
-            }
+            event.target.title = ((event.clientX-event.target.getBoundingClientRect().left)/parseInt(event.target.style.backgroundSize)).toFixed(2);
+        }
         }else{
             let myDiv = event.target.getElementsByTagName("DIV")[0];
             if(!myDiv.classList.contains("readOnlyStarRating")){
          myDiv.style.width=(event.clientX-myDiv.getBoundingClientRect().left)+"px";
-         console.log(myDiv.clientX-myDiv.getBoundingClientRect().left);
+         myDiv.title = ((event.clientX-myDiv.getBoundingClientRect().left)/parseInt(myDiv.style.backgroundSize)).toFixed(2);
             }
         }
     }
@@ -44,14 +45,12 @@ function zmouseMoveStarRating(){
     function zmouseMoveStarRatingClick(){
         if(!event.target.classList.contains("starRatingContainer")){
             if(!event.target.classList.contains("readOnlyStarRating")){
-                console.log(parseInt(event.target.style.width)/parseInt(event.target.style.backgroundSize));
             mouseClickedStarRating=true;
             event.target.dataset.rating=parseInt(event.target.style.width)/parseInt(event.target.style.backgroundSize);
             }
         }else{
             let myDiv = event.target.getElementsByTagName("DIV")[0];
             if(!myDiv.classList.contains("readOnlyStarRating")){
-                console.log(parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize));
             mouseClickedStarRating=true;
             myDiv.dataset.rating=parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize);
             }
