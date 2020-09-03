@@ -1,7 +1,7 @@
 
 /* myStarCollection.push("className"); */
 var mouseClickedStarRating=false;
-function rateSystem(className, obj){
+function rateSystem(className, obj, fnc){
     /* window.myStarCollection.push(className); */
 for(let i=0; i<obj.length; i++){
 
@@ -18,7 +18,7 @@ for(let i=0; i<obj.length; i++){
     }
 /*     document.getElementsByClassName(className)[i].innerHTML=obj[i].rating; */
 document.getElementsByClassName("starRatingContainer")[i].addEventListener("mousemove", zmouseMoveStarRating, false);
-document.getElementsByClassName("starRatingContainer")[i].addEventListener("click", zmouseMoveStarRatingClick, false);
+document.getElementsByClassName("starRatingContainer")[i].addEventListener("click", function(){ zmouseMoveStarRatingClick(fnc) }, false);
 document.getElementsByClassName("starRatingContainer")[i].addEventListener("mouseleave", zmouseMoveStarRatingLeave, false);
 }
 
@@ -28,31 +28,41 @@ function zmouseMoveStarRating(){
     if(mouseClickedStarRating==false){
         if(!event.target.classList.contains("starRatingContainer")){
             if(!event.target.classList.contains("readOnlyStarRating")){
-            event.target.style.width=(event.clientX-event.target.getBoundingClientRect().left)+"px";
-            event.target.title = ((event.clientX-event.target.getBoundingClientRect().left)/parseInt(event.target.style.backgroundSize)).toFixed(2);
+            if((event.clientX-event.target.getBoundingClientRect().left)<=parseInt(event.target.style.maxWidth)){
+                event.target.style.width=(event.clientX-event.target.getBoundingClientRect().left)+"px";
+            }else{
+            /* event.target.style.width =  event.target.style.maxWidth; */
+            }
+            event.target.title = (parseInt(event.target.style.width)/parseInt(event.target.style.backgroundSize)).toFixed(2);
         }
         }else{
             let myDiv = event.target.getElementsByTagName("DIV")[0];
             if(!myDiv.classList.contains("readOnlyStarRating")){
-         myDiv.style.width=(event.clientX-myDiv.getBoundingClientRect().left)+"px";
-         myDiv.title = ((event.clientX-myDiv.getBoundingClientRect().left)/parseInt(myDiv.style.backgroundSize)).toFixed(2);
+                if((event.clientX-myDiv.getBoundingClientRect().left)<=parseInt(myDiv.style.maxWidth)){
+                myDiv.style.width=(event.clientX-myDiv.getBoundingClientRect().left)+"px";
+                }else{
+                /* myDiv.style.width= myDiv.style.maxWidth;  */ 
+                }
+         myDiv.title = (parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2);
             }
         }
     }
     }
 
 
-    function zmouseMoveStarRatingClick(){
+    function zmouseMoveStarRatingClick(fnc){
         if(!event.target.classList.contains("starRatingContainer")){
             if(!event.target.classList.contains("readOnlyStarRating")){
             mouseClickedStarRating=true;
-            event.target.dataset.rating=parseInt(event.target.style.width)/parseInt(event.target.style.backgroundSize);
+            event.target.dataset.rating=(parseInt(event.target.style.width)/parseInt(event.target.style.backgroundSize)).toFixed(2);
+            fnc(event.target.dataset.rating);
             }
         }else{
             let myDiv = event.target.getElementsByTagName("DIV")[0];
             if(!myDiv.classList.contains("readOnlyStarRating")){
             mouseClickedStarRating=true;
-            myDiv.dataset.rating=parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize);
+            myDiv.dataset.rating=(parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2);
+            fnc(myDiv.dataset.rating);
             }
         }
 }
@@ -60,10 +70,10 @@ function zmouseMoveStarRating(){
 
 function zmouseMoveStarRatingLeave(){
     if(!event.target.classList.contains("starRatingContainer")){
-        if(!event.target.classList.contains("readOnlyStarRating")){
+     /*    if(!event.target.classList.contains("readOnlyStarRating")){
     event.target.style.width=event.target.dataset.rating*parseInt(event.target.style.backgroundSize)+"px";
     mouseClickedStarRating=false;
-        }
+        } */
     }else{
         let myDiv = event.target.getElementsByTagName("DIV")[0];
             if(!myDiv.classList.contains("readOnlyStarRating")){
