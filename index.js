@@ -1,7 +1,6 @@
 
 /* myStarCollection.push("className"); */
 var mouseClickedStarRating=false;
-var clientX, clientY;
 function rateSystem(className, obj, fnc=function(){}){
     /* window.myStarCollection.push(className); */
 for(let i=0; i<obj.length; i++){
@@ -15,6 +14,7 @@ for(let i=0; i<obj.length; i++){
     document.getElementsByClassName(className)[i].style.maxWidth = obj[i].starSize*obj[i].maxRating + "px";
     document.getElementsByClassName(className)[i].title = obj[i].rating;
     document.getElementsByClassName(className)[i].dataset.rating = obj[i].rating;
+    document.getElementsByClassName(className)[i].dataset.step = obj[i].step;
     if(obj[i].readOnly==="yes"){
         document.getElementsByClassName(className)[i].classList.add("readOnlyStarRating");
     }
@@ -35,7 +35,12 @@ function zmouseMoveStarRating(){
         if(!event.target.classList.contains("starRatingContainer")){
             if(!event.target.classList.contains("readOnlyStarRating")){
             if((event.clientX-event.target.getBoundingClientRect().left)<=parseInt(event.target.style.maxWidth)){
-                event.target.style.width=(event.clientX-event.target.getBoundingClientRect().left)+"px";
+                
+                let realStep = parseFloat(event.target.dataset.step)*parseInt(event.target.style.backgroundSize);
+                realStep=1/realStep;
+                /* console.log(realStep); */
+
+                event.target.style.width=(Math.round((event.clientX-event.target.getBoundingClientRect().left)*realStep)/realStep)+"px";
             }else{
             /* event.target.style.width =  event.target.style.maxWidth; */
             }
@@ -43,9 +48,13 @@ function zmouseMoveStarRating(){
         }
         }else{
             let myDiv = event.target.getElementsByTagName("DIV")[0];
+            let realStep = parseFloat(myDiv.dataset.step)*parseInt(myDiv.style.backgroundSize);
+            realStep=1/realStep;
+            /* console.log(realStep); */
+
             if(!myDiv.classList.contains("readOnlyStarRating")){
                 if((event.clientX-myDiv.getBoundingClientRect().left)<=parseInt(myDiv.style.maxWidth)){
-                myDiv.style.width=(event.clientX-myDiv.getBoundingClientRect().left)+"px";
+                    myDiv.style.width=(Math.round((event.clientX-myDiv.getBoundingClientRect().left)*realStep)/realStep)+"px";
                 }else{
                 /* myDiv.style.width= myDiv.style.maxWidth;  */ 
                 }
@@ -67,7 +76,7 @@ function zmouseMoveStarRating(){
             let myDiv = event.target.getElementsByTagName("DIV")[0];
             if(!myDiv.classList.contains("readOnlyStarRating")){
             mouseClickedStarRating=true;
-            myDiv.dataset.rating=(parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2);
+           myDiv.dataset.rating=(parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2);
             fnc(myDiv.dataset.rating, myDiv);
             }
         }
