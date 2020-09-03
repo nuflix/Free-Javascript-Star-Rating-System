@@ -14,6 +14,7 @@ for(let i=0; i<obj.length; i++){
     document.getElementsByClassName("starRatingContainer")[i].style.width = obj[i].starSize*obj[i].maxRating + 10 + "px";
     document.getElementsByClassName(className)[i].style.maxWidth = obj[i].starSize*obj[i].maxRating + "px";
     document.getElementsByClassName(className)[i].title = obj[i].rating;
+    document.getElementsByClassName(className)[i].dataset.rating = obj[i].rating;
     if(obj[i].readOnly==="yes"){
         document.getElementsByClassName(className)[i].classList.add("readOnlyStarRating");
     }
