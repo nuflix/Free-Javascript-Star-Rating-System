@@ -11,7 +11,7 @@ for(let i=0; i<obj.length; i++){
     document.getElementsByClassName(className)[i].style.backgroundSize=obj[i].starSize + "px";
     document.getElementsByClassName(className)[i].style.backgroundImage = "url('" + obj[i].starImage + "')" ;
     document.getElementsByClassName(className)[i].style.backgroundRepeat="repeat-x";
-    document.getElementsByClassName("starRatingContainer")[i].style.width = obj[i].starSize*obj[i].maxRating + 10 + "px";
+    document.getElementsByClassName(className)[i].parentElement.style.width = obj[i].starSize*obj[i].maxRating + 10 + "px";
     document.getElementsByClassName(className)[i].style.maxWidth = obj[i].starSize*obj[i].maxRating + "px";
     document.getElementsByClassName(className)[i].title = obj[i].rating;
     document.getElementsByClassName(className)[i].dataset.rating = obj[i].rating;
@@ -19,13 +19,13 @@ for(let i=0; i<obj.length; i++){
         document.getElementsByClassName(className)[i].classList.add("readOnlyStarRating");
     }
 /*     document.getElementsByClassName(className)[i].innerHTML=obj[i].rating; */
-document.getElementsByClassName("starRatingContainer")[i].addEventListener("mousemove", zmouseMoveStarRating, false);
-document.getElementsByClassName("starRatingContainer")[i].addEventListener("click", function(){ zmouseMoveStarRatingClick(fnc) }, false);
-document.getElementsByClassName("starRatingContainer")[i].addEventListener("mouseleave", zmouseMoveStarRatingLeave, false);
+document.getElementsByClassName(className)[i].parentElement.addEventListener("mousemove", zmouseMoveStarRating, false);
+document.getElementsByClassName(className)[i].parentElement.addEventListener("click", function(){ zmouseMoveStarRatingClick(fnc) }, false);
+document.getElementsByClassName(className)[i].parentElement.addEventListener("mouseleave", zmouseMoveStarRatingLeave, false);
 
-document.getElementsByClassName("starRatingContainer")[i].addEventListener("touchstart", zmouseMoveStarRatingTouch, false);
-document.getElementsByClassName("starRatingContainer")[i].addEventListener("touchend", function(){zmouseMoveStarRatingLeaveTouch(fnc)}, false);
-document.getElementsByClassName("starRatingContainer")[i].addEventListener("touchmove", zmouseMoveStarRatingTouchMove, false);
+document.getElementsByClassName(className)[i].parentElement.addEventListener("touchstart", zmouseMoveStarRatingTouch, false);
+document.getElementsByClassName(className)[i].parentElement.addEventListener("touchend", function(){zmouseMoveStarRatingLeaveTouch(fnc)}, false);
+document.getElementsByClassName(className)[i].parentElement.addEventListener("touchmove", zmouseMoveStarRatingTouchMove, false);
 }
 
 }
@@ -95,8 +95,6 @@ function zmouseMoveStarRatingLeave(){
         }
 
         function zmouseMoveStarRatingLeaveTouch(fnc){
-            deltaX = event.changedTouches[0].clientX - clientX;
-            deltaY = event.changedTouches[0].clientY - clientY;
             
             if(!event.target.classList.contains("starRatingContainer")){
                 if(!event.target.classList.contains("readOnlyStarRating")){

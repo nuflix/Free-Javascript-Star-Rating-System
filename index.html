@@ -11,14 +11,22 @@
     <div class="starRatingContainer"><div class="ratingSystem"></div></div>
     <div class="ratingHolder"></div>
     <div class="starRatingContainer"><div class="ratingSystem"></div></div>
+        
+    <div class="starRatingContainer"><div class="className"></div><div class="ratingHolder"></div></div>
+    
 
 <script>
     var obj=[
         {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"./star.png", "starSize":"16"},
         {"rating":"2.5", "maxRating":"5", "readOnly":"yes", "starImage":"./star.png", "starSize":"32"}
     ];
+    var obj2=[
+        {"rating":"4.3", "maxRating":"10", "readOnly":"no", "starImage":"./star.png", "starSize":"16"},
+    ];
 var className="ratingSystem";
     rateSystem(className, obj, function(rating, ratingTargetElement){  ratingTargetElement.parentElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating;  });
+
+    rateSystem("className", obj2, function(rating, ratingTargetElement){  ratingTargetElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating;  });
 </script>
 
 </body>
