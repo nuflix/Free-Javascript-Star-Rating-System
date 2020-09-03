@@ -2,7 +2,7 @@
 /* myStarCollection.push("className"); */
 var mouseClickedStarRating=false;
 var clientX, clientY;
-function rateSystem(className, obj, fnc){
+function rateSystem(className, obj, fnc=function(){}){
     /* window.myStarCollection.push(className); */
 for(let i=0; i<obj.length; i++){
 
