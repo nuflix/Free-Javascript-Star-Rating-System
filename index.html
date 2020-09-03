@@ -9,6 +9,7 @@
 <body>
     
     <div class="starRatingContainer"><div class="ratingSystem"></div></div>
+    <div class="ratingHolder"></div>
     <div class="starRatingContainer"><div class="ratingSystem"></div></div>
 
 <script>
@@ -17,7 +18,7 @@
         {"rating":"2.5", "maxRating":"5", "readOnly":"yes", "starImage":"./star.png", "starSize":"32"}
     ];
 var className="ratingSystem";
-    rateSystem(className, obj, function(rating){ alert(rating); });
+    rateSystem(className, obj, function(rating, ratingTargetElement){  ratingTargetElement.parentElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating;  });
 </script>
 
 </body>
