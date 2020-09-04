@@ -14,6 +14,7 @@ for(let i=0; i<obj.length; i++){
     document.getElementsByClassName(className)[i].parentElement.style.height = parseInt(obj[i].starSize)+"px";
 
     if(obj[i].emptyStarImage){
+    document.getElementsByClassName(className)[i].innerHTML = '<div class="emptyStarRating"></div>';
     document.getElementsByClassName(className)[i].getElementsByClassName("emptyStarRating")[0].style.backgroundSize = parseInt(obj[i].starSize) + "px";
     document.getElementsByClassName(className)[i].getElementsByClassName("emptyStarRating")[0].style.backgroundImage = "url('" + obj[i].emptyStarImage + "')" ;
     document.getElementsByClassName(className)[i].getElementsByClassName("emptyStarRating")[0].style.backgroundRepeat="repeat-x";
