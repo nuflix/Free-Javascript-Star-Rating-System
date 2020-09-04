@@ -150,18 +150,24 @@ function zmouseMoveStarRatingLeave(){
                 let myDiv = event.target.getElementsByTagName("DIV")[0];
                 if(!myDiv.classList.contains("readOnlyStarRating")){
                     if((event.changedTouches[0].clientX-myDiv.getBoundingClientRect().left)<=parseInt(myDiv.style.maxWidth)){
-                myDiv.style.width=(event.changedTouches[0].clientX-myDiv.getBoundingClientRect().left)+"px";
+                        let realStep = parseFloat(myDiv.dataset.step)*parseInt(myDiv.style.backgroundSize);
+                        realStep=1/realStep;
+
+                myDiv.style.width=(Math.round((parseInt(event.changedTouches[0].clientX)-parseInt(myDiv.getBoundingClientRect().left))*realStep)/realStep)+"px";
                     }else{
-                        event.target.style.width=event.target.style.maxWidth;      
+                        myDiv.style.width=myDiv.style.maxWidth;      
                     }
                 myDiv.dataset.rating=(parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2);
                 fnc(myDiv.dataset.rating, myDiv);
                 }
             }else if(event.target.classList.contains("emptyStarRating")){
-
                 if(!event.target.parentElement.classList.contains("readOnlyStarRating")){
                     if((event.changedTouches[0].clientX-event.target.parentElement.getBoundingClientRect().left)<=parseInt(event.target.parentElement.style.maxWidth)){
-                    event.target.parentElement.style.width=(event.changedTouches[0].clientX-event.target.parentElement.getBoundingClientRect().left)+"px";
+                    
+                        let realStep = parseFloat(event.target.parentElement.dataset.step)*parseInt(event.target.parentElement.style.backgroundSize);
+                        realStep=1/realStep;
+
+                    event.target.parentElement.style.width=(Math.round((parseInt(event.changedTouches[0].clientX)-parseInt(event.target.parentElement.getBoundingClientRect().left))*realStep)/realStep)+"px";
                     }else{
                         event.target.parentElement.style.width=event.target.parentElement.style.maxWidth;    
                     }
@@ -173,7 +179,11 @@ function zmouseMoveStarRatingLeave(){
 
                 if(!event.target.classList.contains("readOnlyStarRating")){
                     if((event.changedTouches[0].clientX-event.target.getBoundingClientRect().left)<=parseInt(event.target.style.maxWidth)){
-                    event.target.style.width=(event.changedTouches[0].clientX-event.target.getBoundingClientRect().left)+"px";
+
+                        let realStep = parseFloat(event.target.dataset.step)*parseInt(event.target.style.backgroundSize);
+                        realStep=1/realStep;
+
+                    event.target.style.width=(Math.round((parseInt(event.changedTouches[0].clientX)-parseInt(event.target.getBoundingClientRect().left))*realStep)/realStep)+"px";
                     }else{
                         event.target.style.width=event.target.style.maxWidth;    
                     }
