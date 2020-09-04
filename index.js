@@ -136,7 +136,11 @@ function zmouseMoveStarRatingLeave(){
     
 
     function zmouseMoveStarRatingTouch(){
+        try{
        event.preventDefault();
+        }catch(err){
+
+        }
         }
 
         function zmouseMoveStarRatingLeaveTouch(fnc){

@@ -8,7 +8,7 @@
 </head>
 <body>
     
-    <div class="starRatingContainer"><div class="ratingSystem"><div class="emptyStarRating"></div></div>
+    <div class="starRatingContainer"><div class="ratingSystem"><div class="emptyStarRating"></div></div></div>
     <div class="ratingHolder"></div>
     <div class="starRatingContainer"><div class="ratingSystem"><div class="emptyStarRating"></div></div></div>
         
@@ -24,7 +24,7 @@
         {"rating":"4.3", "maxRating":"10", "readOnly":"no", "starImage":"./star.png", "emptyStarImage":"./starbackground.png", "starSize":"16", "step":"1"},
     ];
 var className="ratingSystem";
-    rateSystem(className, obj, function(rating, ratingTargetElement){  ratingTargetElement.parentElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating;  });
+    rateSystem(className, obj, function(rating, ratingTargetElement){ /* if(isNaN(rating)){console.log(ratingTargetElement)} */ ratingTargetElement.parentElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating;  });
 
     rateSystem("className", obj2, function(rating, ratingTargetElement){  ratingTargetElement.parentElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating;  });
 </script>
