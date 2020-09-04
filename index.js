@@ -225,6 +225,8 @@ function zmouseMoveStarRatingLeave(){
 
                 if(!event.target.classList.contains("readOnlyStarRating")){
                     if((event.changedTouches[0].clientX-event.target.getBoundingClientRect().left)<=parseInt(event.target.style.maxWidth)){
+                        let realStep = parseFloat(event.target.dataset.step)*parseInt(event.target.style.backgroundSize);
+                        realStep=1/realStep;
                     event.target.style.width=(Math.round((parseInt(event.changedTouches[0].clientX)-parseInt(event.target.getBoundingClientRect().left))*realStep)/realStep)+"px";
                     }else{
                         event.target.style.width=event.target.style.maxWidth;    
