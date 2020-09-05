@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Free JavaScript library for star rating. Star Rating system">
+    <meta name="keywords" content="HTML, CSS, JavaScript, library, free">
+    <meta name="author" content="Djordje Vujicic">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="16x16">
+    <title>Free Javascript Star Rating System</title>
     <script src="./index.js"></script>
 </head>
 <body>
-    
+    <h1>Free Javascript Star Rating System</h1>
     <h2>Introduction:</h2>
-
-    <div>
-    To use rating system you just have to make div with class name "starRatingContainer" and make another div element inside it with class name of your choice:
+    <div>Include this library: 
+    <pre><code>&lt;script src=<a href="https://peaceful-darwin-b94b3c.netlify.app/index.js">"https://peaceful-darwin-b94b3c.netlify.app/index.js"</a>>&lt;/script></code></pre>
+    <p>I recommend you to download js file from github(<a href="https://github.com/nuflix/library">here</a>) and include it directly from your project</p>
+    <p>To use rating system you just have to make div with class name "starRatingContainer" and make another div element inside it with class name of your choice:</p>
     <pre><code>&lt;div class="starRatingContainer">&lt;div class="anyClassName">&lt;/div>&lt;/div></code></pre>
     and call this function:
     <pre><code>rateSystem(string, arrayOfJsonObjects, function(rating, triggeredElement){});</code></pre>
@@ -20,26 +25,26 @@
     <li>Second argument is array of JSON objects. Each JSON object sets all properties of a div that has class name equal to the first argument.</li>
     <li>last argument(function) is optional(it is triggered when user rates). It should have 2 parameters. First one is rating and the second one is element that has been triggered.</li>
     </ul>
-   </div>
+    </div>
 
     <h2>Examples:</h2>
 
     <h3>html:</h3>
     <pre><code>
         //example 1
-        &lt;div>  &lt;div class="starRatingContainer"> &lt;div class="className"> &lt;/div> &lt;/div>  &lt;div class="ratingHolder"> &lt;/div>  &lt;/div>
+        &lt;div&gt;  &lt;div class="starRatingContainer"&gt; &lt;div class="className"&gt; &lt;/div&gt; &lt;/div&gt;  &lt;div class="ratingHolder"&gt; &lt;/div&gt; &lt;/div&gt;
     
         //example 2
-        &lt;div> &lt;div class="starRatingContainer"> &lt;div class="ratingSystem"> &lt;/div> &lt;/div>  &lt;div class="ratingHolder"> &lt;/div> &lt;/div>
+        &lt;div&gt; &lt;div class="starRatingContainer"&gt; &lt;div class="ratingSystem"&gt; &lt;/div&gt; &lt;/div&gt;  &lt;div class="ratingHolder"&gt; &lt;/div&gt; &lt;/div&gt;
        
         //example 3
-        &lt;div>  &lt;div class="starRatingContainer"> &lt;div class="className"> &lt;/div> &lt;/div>  &lt;div class="ratingHolder"> &lt;/div>  &lt;/div>
+        &lt;div&gt;  &lt;div class="starRatingContainer"&gt; &lt;div class="className"&gt; &lt;/div&gt; &lt;/div&gt;  &lt;div class="ratingHolder"&gt; &lt;/div&gt; &lt;/div&gt;
        
         //example 4
-        &lt;div> &lt;div class="starRatingContainer"> &lt;div class="ratingSystem"> &lt;/div> &lt;/div>  &lt;div class="ratingHolder"> &lt;/div> &lt;/div>
+        &lt;div&gt; &lt;div class="starRatingContainer"&gt; &lt;div class="ratingSystem"&gt; &lt;/div&gt; &lt;/div&gt;  &lt;div class="ratingHolder"&gt; &lt;/div&gt; &lt;/div&gt;
        
         //example 5
-        &lt;div>  &lt;div class="starRatingContainer"> &lt;div class="className"> &lt;/div> &lt;/div>  &lt;div class="ratingHolder"> &lt;/div>  &lt;/div>
+        &lt;div&gt;  &lt;div class="starRatingContainer"&gt; &lt;div class="className"&gt; &lt;/div&gt; &lt;/div&gt;  &lt;div class="ratingHolder"&gt; &lt;/div&gt; &lt;/div&gt;
        
     </code></pre>
 
@@ -68,32 +73,30 @@
     </code></pre>
 
     <h2>Result:</h2>
-    <p>
+ 
     //Plain star rating system(5 stars, step=0.5)
     <div> <div class="starRatingContainer"><div class="className"></div></div> <div class="ratingHolder"></div> </div>
-    </p>
+    <br>
 
-    <p>
     //Star rating with empty stars borders(5 stars, step=0.5)
     <div><div class="starRatingContainer"><div class="ratingSystem"></div></div> <div class="ratingHolder"></div></div>
-    </p>
+    <br>
 
-    <p>
     //Star rating with empty stars borders(10 stars, step=1)
     <div> <div class="starRatingContainer"><div class="className"></div></div> <div class="ratingHolder"></div> </div>
-    </p>
+    <br>
 
-    <p>
     //readOnly stars(5 stars, starSize=32)
     <div><div class="starRatingContainer"><div class="ratingSystem"></div></div> <div class="ratingHolder"></div></div>
-    </p>
+    <br>
 
-    <p>
     //Star rating with empty stars background(5 stars, step=0.5)
     <div> <div class="starRatingContainer"><div class="className"></div></div> <div class="ratingHolder"></div> </div>
-    </p>
+    <br>
    
-
+   <h2>If you need any help, or want to support me, feel free to contact me:</h2>
+   <p><b>email: </b>djordje.vujicic@yandex.com</p>
+   <p><b>instagram: </b> djordje.vujicic</p>
    <a href="https://info.flagcounter.com/zBYK"><img src="https://s01.flagcounter.com/count2/zBYK/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
 
 
