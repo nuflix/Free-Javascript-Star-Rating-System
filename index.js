@@ -11,6 +11,7 @@ for(let i=0; i<obj.length; i++){
     document.getElementsByClassName(className)[i].style.backgroundImage = "url('" + obj[i].starImage + "')" ;
     document.getElementsByClassName(className)[i].style.backgroundRepeat="repeat-x";
     document.getElementsByClassName(className)[i].parentElement.style.width = (parseInt(obj[i].starSize)*parseInt(obj[i].maxRating) ) + "px";
+    document.getElementsByClassName(className)[i].parentElement.style.maxWidth = (parseInt(obj[i].starSize)*parseInt(obj[i].maxRating) ) + "px";
     document.getElementsByClassName(className)[i].parentElement.style.height = parseInt(obj[i].starSize)+"px";
 
     if(obj[i].backgroundStarImage){
