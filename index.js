@@ -213,7 +213,7 @@ function zmouseMoveStarRatingLeave(){
                         realStep=1/realStep;
                 myDiv.style.width=(Math.round((parseInt(event.changedTouches[0].clientX)-parseInt(myDiv.getBoundingClientRect().left))*realStep)/realStep)+"px";
                     }else{
-                        event.target.style.width=event.target.style.maxWidth;      
+                        myDiv.style.width=myDiv.style.maxWidth;      
                     }
 
                 }
