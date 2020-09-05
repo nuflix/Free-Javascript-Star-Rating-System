@@ -8,33 +8,110 @@
 </head>
 <body>
     
-    <div class="starRatingContainer"><div class="ratingSystem"></div></div>
-    <div class="ratingHolder"></div>
-    <div class="starRatingContainer"><div class="ratingSystem"></div></div>
-        
-   <div> <div class="starRatingContainer"><div class="className"></div></div> <div class="ratingHolder"></div> </div>
+    <h2>Introduction:</h2>
 
-   <div> <div class="starRatingContainer"><div class="className"></div></div> <div class="ratingHolder"></div> </div>
+    <div>
+    To use rating system you just have to make div with class name "starRatingContainer" and make another div element inside it with class name of your choice:
+    <pre><code>&lt;div class="starRatingContainer">&lt;div class="anyClassName">&lt;/div>&lt;/div></code></pre>
+    and call this function:
+    <pre><code>rateSystem(string, arrayOfJsonObjects, function(rating, triggeredElement){});</code></pre>
+    <ul>
+    <li>First argument is a string. It is class name of div elements that will load your star rating.</li>
+    <li>Second argument is array of JSON objects. Each JSON object sets all properties of a div that has class name equal to the first argument.</li>
+    <li>last argument(function) is optional(it is triggered when user rates). It should have 2 parameters. First one is rating and the second one is element that has been triggered.</li>
+    </ul>
+   </div>
+
+    <h2>Examples:</h2>
+
+    <h3>html:</h3>
+    <pre><code>
+        //example 1
+        &lt;div>  &lt;div class="starRatingContainer"> &lt;div class="className"> &lt;/div> &lt;/div>  &lt;div class="ratingHolder"> &lt;/div>  &lt;/div>
     
-   <div> <div class="starRatingContainer"><div class="className"></div></div> <div class="ratingHolder"></div> </div>
+        //example 2
+        &lt;div> &lt;div class="starRatingContainer"> &lt;div class="ratingSystem"> &lt;/div> &lt;/div>  &lt;div class="ratingHolder"> &lt;/div> &lt;/div>
+       
+        //example 3
+        &lt;div>  &lt;div class="starRatingContainer"> &lt;div class="className"> &lt;/div> &lt;/div>  &lt;div class="ratingHolder"> &lt;/div>  &lt;/div>
+       
+        //example 4
+        &lt;div> &lt;div class="starRatingContainer"> &lt;div class="ratingSystem"> &lt;/div> &lt;/div>  &lt;div class="ratingHolder"> &lt;/div> &lt;/div>
+       
+        //example 5
+        &lt;div>  &lt;div class="starRatingContainer"> &lt;div class="className"> &lt;/div> &lt;/div>  &lt;div class="ratingHolder"> &lt;/div>  &lt;/div>
+       
+    </code></pre>
+
+    <h3>javaScript:</h3>
+    <pre><code>
+    &lt;script>
+
+    //setting variables
+    var properties1=[
+        {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"./star.png", "emptyStarImage":"./starbackground.png", "starSize":"16", "step":"0.5"},
+        {"rating":"2.7", "maxRating":"5", "readOnly":"yes", "starImage":"./star.png", "emptyStarImage":"./starbackground.png", "starSize":"32"}
+    ];
+    var properties2=[
+        {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"./star.png", "starSize":"16", "step":"0.5"},
+        {"rating":"4.3", "maxRating":"10", "readOnly":"no", "starImage":"./star.png", "emptyStarImage":"./starbackground.png", "starSize":"16", "step":"1"},
+        {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"./star.png", "backgroundStarImage":"./backgroundStar.png", "starSize":"16", "step":"0.5"}
+    ];
+    var className="ratingSystem";
+
+    //execution
+    rateSystem(className, properties1, function(rating, ratingTargetElement){  ratingTargetElement.parentElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating; });
+
+    rateSystem("className", properties2, function(rating, ratingTargetElement){  ratingTargetElement.parentElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating;  });
+    
+    &lt;/script>
+    </code></pre>
+
+    <h2>Result:</h2>
+    <p>
+    //Plain star rating system(5 stars, step=0.5)
+    <div> <div class="starRatingContainer"><div class="className"></div></div> <div class="ratingHolder"></div> </div>
+    </p>
+
+    <p>
+    //Star rating with empty stars borders(5 stars, step=0.5)
+    <div><div class="starRatingContainer"><div class="ratingSystem"></div></div> <div class="ratingHolder"></div></div>
+    </p>
+
+    <p>
+    //Star rating with empty stars borders(10 stars, step=1)
+    <div> <div class="starRatingContainer"><div class="className"></div></div> <div class="ratingHolder"></div> </div>
+    </p>
+
+    <p>
+    //readOnly stars(5 stars, starSize=32)
+    <div><div class="starRatingContainer"><div class="ratingSystem"></div></div> <div class="ratingHolder"></div></div>
+    </p>
+
+    <p>
+    //Star rating with empty stars background(5 stars, step=0.5)
+    <div> <div class="starRatingContainer"><div class="className"></div></div> <div class="ratingHolder"></div> </div>
+    </p>
+   
 
    <a href="https://info.flagcounter.com/zBYK"><img src="https://s01.flagcounter.com/count2/zBYK/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
 
 
 <script>
-    var obj=[
+    var properties1=[
         {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"./star.png", "emptyStarImage":"./starbackground.png", "starSize":"16", "step":"0.5"},
-        {"rating":"2.7", "maxRating":"5", "readOnly":"yes", "starImage":"./star.png", "emptyStarImage":"./starbackground.png", "starSize":"32", "step":"0.5"}
+        {"rating":"2.7", "maxRating":"5", "readOnly":"yes", "starImage":"./star.png", "emptyStarImage":"./starbackground.png", "starSize":"32"}
     ];
-    var obj2=[
+    var properties2=[
+        {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"./star.png", "starSize":"16", "step":"0.5"},
         {"rating":"4.3", "maxRating":"10", "readOnly":"no", "starImage":"./star.png", "emptyStarImage":"./starbackground.png", "starSize":"16", "step":"1"},
-        {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"./star.png", "backgroundStarImage":"./backgroundStar.png", "starSize":"16", "step":"0.5"},
-        {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"./star.png", "starSize":"16", "step":"0.5"}
+        {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"./star.png", "backgroundStarImage":"./backgroundStar.png", "starSize":"16", "step":"0.5"}
     ];
-var className="ratingSystem";
-    rateSystem(className, obj, function(rating, ratingTargetElement){ /* if(isNaN(rating)){console.log(ratingTargetElement)} */ ratingTargetElement.parentElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating; });
+    var className="ratingSystem";
 
-    rateSystem("className", obj2, function(rating, ratingTargetElement){  ratingTargetElement.parentElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating;  });
+    rateSystem(className, properties1, function(rating, ratingTargetElement){ ratingTargetElement.parentElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating; });
+
+    rateSystem("className", properties2, function(rating, ratingTargetElement){  ratingTargetElement.parentElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating;  });
 </script>
 
 </body>
