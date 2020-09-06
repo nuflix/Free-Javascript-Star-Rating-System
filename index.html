@@ -54,11 +54,11 @@
 
     //setting variables
     var properties1=[
-        {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"<a href="./star.png">./star.png</a>", "emptyStarImage":"<a href="./starbackground.png">./starbackground.png</a>", "starSize":"16", "step":"0.5"},
+        {"rating":"4.3", "maxRating":"5", "minRating":"0.5", "readOnly":"no", "starImage":"<a href="./star.png">./star.png</a>", "emptyStarImage":"<a href="./starbackground.png">./starbackground.png</a>", "starSize":"16", "step":"0.5"},
         {"rating":"2.7", "maxRating":"5", "readOnly":"yes", "starImage":"<a href="./star.png">./star.png</a>", "emptyStarImage":"<a href="./starbackground.png">./starbackground.png</a>", "starSize":"32"}
     ];
     var properties2=[
-        {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"<a href="./star.png">./star.png</a>", "starSize":"16", "step":"0.5"},
+        {"rating":"4.3", "maxRating":"5", "minRating":"1", "readOnly":"no", "starImage":"<a href="./star.png">./star.png</a>", "starSize":"16", "step":"0.5"},
         {"rating":"4.3", "maxRating":"10", "readOnly":"no", "starImage":"<a href="./star.png">./star.png</a>", "emptyStarImage":"<a href="./starbackground.png">./starbackground.png</a>", "starSize":"16", "step":"1"},
         {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"<a href="./star.png">./star.png</a>", "backgroundStarImage":"<a href="./backgroundStar.png">./backgroundStar.png</a>", "starSize":"16", "step":"0.5"}
     ];
@@ -74,11 +74,11 @@
 
     <h2>Result</h2>
  
-    //Plain star rating system(5 stars, step=0.5)
+    //Plain star rating system(5 stars, step=0.5, minRating=1)
     <div> <div class="starRatingContainer"><div class="className"></div></div> <div class="ratingHolder"></div> </div>
     <br>
 
-    //Star rating with empty stars borders(5 stars, step=0.5)
+    //Star rating with empty stars borders(5 stars, step=0.5, minRating=0.5)
     <div><div class="starRatingContainer"><div class="ratingSystem"></div></div> <div class="ratingHolder"></div></div>
     <br>
 
@@ -113,11 +113,11 @@
 
 <script>
     var properties1=[
-        {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"./star.png", "emptyStarImage":"./starbackground.png", "starSize":"16", "step":"0.5"},
+        {"rating":"4.3", "maxRating":"5", "minRating":"0.5", "readOnly":"no", "starImage":"./star.png", "emptyStarImage":"./starbackground.png", "starSize":"16", "step":"0.5"},
         {"rating":"2.7", "maxRating":"5", "readOnly":"yes", "starImage":"./star.png", "emptyStarImage":"./starbackground.png", "starSize":"32"}
     ];
     var properties2=[
-        {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"./star.png", "starSize":"16", "step":"0.5"},
+        {"rating":"4.3", "maxRating":"5", "minRating":"1", "readOnly":"no", "starImage":"./star.png", "starSize":"16", "step":"0.5"},
         {"rating":"4.3", "maxRating":"10", "readOnly":"no", "starImage":"./star.png", "emptyStarImage":"./starbackground.png", "starSize":"16", "step":"1"},
         {"rating":"4.3", "maxRating":"5", "readOnly":"no", "starImage":"./star.png", "backgroundStarImage":"./backgroundStar.png", "starSize":"16", "step":"0.5"}
     ];

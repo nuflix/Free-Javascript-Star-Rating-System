@@ -14,8 +14,13 @@ for(let i=0; i<obj.length; i++){
     document.getElementsByClassName(className)[i].parentElement.style.maxWidth = (parseInt(obj[i].starSize)*parseInt(obj[i].maxRating) ) + "px";
     document.getElementsByClassName(className)[i].parentElement.style.height = parseInt(obj[i].starSize)+"px";
 
+    if(obj[i].minRating){
+        document.getElementsByClassName(className)[i].style.minWidth = (obj[i].minRating*obj[i].starSize) + "px";
+    }else{
+        document.getElementsByClassName(className)[i].style.minWidth = "0px";
+    }
+
     if(obj[i].backgroundStarImage){
-        console.log("a");
         document.getElementsByClassName(className)[i].parentElement.style.backgroundSize=obj[i].starSize + "px";
         document.getElementsByClassName(className)[i].parentElement.style.backgroundRepeat="repeat-x";
         document.getElementsByClassName(className)[i].parentElement.style.backgroundImage = "url('" + obj[i].backgroundStarImage + "')" ;
@@ -59,7 +64,11 @@ function zmouseMoveStarRating(){
 
             if(!myDiv.classList.contains("readOnlyStarRating")){
                 if((event.clientX-myDiv.getBoundingClientRect().left)<=parseInt(myDiv.style.maxWidth)){
+                    if((event.clientX-myDiv.getBoundingClientRect().left)>=parseInt(myDiv.style.minWidth)){
                     myDiv.style.width=(Math.round((event.clientX-myDiv.getBoundingClientRect().left)*realStep)/realStep)+"px";
+                    }else{
+                    myDiv.style.width=(Math.round((parseInt(myDiv.style.minWidth))*realStep)/realStep)+"px";    
+                    }
                 }else{
                 /* myDiv.style.width= myDiv.style.maxWidth;  */ 
                 }
@@ -74,8 +83,11 @@ function zmouseMoveStarRating(){
                 let realStep = parseFloat(event.target.parentElement.dataset.step)*parseInt(event.target.parentElement.style.backgroundSize);
                 realStep=1/realStep;
                 /* console.log(realStep); */
-
+                if((event.clientX-event.target.parentElement.getBoundingClientRect().left)>=parseInt(event.target.parentElement.style.minWidth)){
                 event.target.parentElement.style.width=(Math.round((event.clientX-event.target.parentElement.getBoundingClientRect().left)*realStep)/realStep)+"px";
+                }else{
+                event.target.parentElement.style.width=(Math.round((parseInt(event.target.parentElement.style.minWidth))*realStep)/realStep)+"px";    
+                }
             }else{
             /* event.target.style.width =  event.target.style.maxWidth; */
             }
@@ -90,8 +102,11 @@ function zmouseMoveStarRating(){
                 let realStep = parseFloat(event.target.dataset.step)*parseInt(event.target.style.backgroundSize);
                 realStep=1/realStep;
                 /* console.log(realStep); */
-
+                if((event.clientX-event.target.getBoundingClientRect().left)>=parseInt(event.target.style.minWidth)){
                 event.target.style.width=(Math.round((event.clientX-event.target.getBoundingClientRect().left)*realStep)/realStep)+"px";
+                }else{
+                event.target.style.width=(Math.round((parseInt(event.target.style.minWidth))*realStep)/realStep)+"px";    
+                }
             }else{
             /* event.target.style.width =  event.target.style.maxWidth; */
             }
@@ -160,8 +175,11 @@ function zmouseMoveStarRatingLeave(){
                     if((event.changedTouches[0].clientX-myDiv.getBoundingClientRect().left)<=parseInt(myDiv.style.maxWidth)){
                         let realStep = parseFloat(myDiv.dataset.step)*parseInt(myDiv.style.backgroundSize);
                         realStep=1/realStep;
-
+                if((event.changedTouches[0].clientX-myDiv.getBoundingClientRect().left)>=parseInt(myDiv.style.minWidth)){
                 myDiv.style.width=(Math.round((parseInt(event.changedTouches[0].clientX)-parseInt(myDiv.getBoundingClientRect().left))*realStep)/realStep)+"px";
+                }else{
+                myDiv.style.width=(Math.round((parseInt(myDiv.style.minWidth)*realStep))/realStep)+"px";   
+                }
                     }else{
                         myDiv.style.width=myDiv.style.maxWidth;      
                     }
@@ -174,8 +192,12 @@ function zmouseMoveStarRatingLeave(){
                     
                         let realStep = parseFloat(event.target.parentElement.dataset.step)*parseInt(event.target.parentElement.style.backgroundSize);
                         realStep=1/realStep;
-
+                    if((event.changedTouches[0].clientX-event.target.parentElement.getBoundingClientRect().left)>=parseInt(event.target.parentElement.style.minWidth)){
                     event.target.parentElement.style.width=(Math.round((parseInt(event.changedTouches[0].clientX)-parseInt(event.target.parentElement.getBoundingClientRect().left))*realStep)/realStep)+"px";
+                    }else{
+                    event.target.parentElement.style.width=(Math.round((parseInt(event.target.parentElement.style.minWidth))*realStep)/realStep)+"px";    
+                    }
+                
                     }else{
                         event.target.parentElement.style.width=event.target.parentElement.style.maxWidth;    
                     }
@@ -190,8 +212,12 @@ function zmouseMoveStarRatingLeave(){
 
                         let realStep = parseFloat(event.target.dataset.step)*parseInt(event.target.style.backgroundSize);
                         realStep=1/realStep;
-
+                    if((event.changedTouches[0].clientX-event.target.getBoundingClientRect().left)>=parseInt(event.target.style.minWidth)){
                     event.target.style.width=(Math.round((parseInt(event.changedTouches[0].clientX)-parseInt(event.target.getBoundingClientRect().left))*realStep)/realStep)+"px";
+                    }else{
+                    event.target.style.width=(Math.round((parseInt(event.target.style.minWidth))*realStep)/realStep)+"px";    
+                    }
+                
                     }else{
                         event.target.style.width=event.target.style.maxWidth;    
                     }
