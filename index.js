@@ -1,7 +1,7 @@
 
 /* myStarCollection.push("className"); */
 var mouseClickedStarRating=false;
-function rateSystem(className, obj, fnc=function(){}){
+function rateSystem(className, obj, fnc=function(){}, fncMove=function(){}, fncLeave=function(){}){
     /* window.myStarCollection.push(className); */
 for(let i=0; i<obj.length; i++){
 
@@ -43,18 +43,18 @@ for(let i=0; i<obj.length; i++){
         document.getElementsByClassName(className)[i].classList.add("readOnlyStarRating");
     }
 /*     document.getElementsByClassName(className)[i].innerHTML=obj[i].rating; */
-document.getElementsByClassName(className)[i].parentElement.addEventListener("mousemove", zmouseMoveStarRating, false);
+document.getElementsByClassName(className)[i].parentElement.addEventListener("mousemove", function(){ zmouseMoveStarRating(fncMove) }, false);
 document.getElementsByClassName(className)[i].parentElement.addEventListener("click", function(){ zmouseMoveStarRatingClick(fnc) }, false);
-document.getElementsByClassName(className)[i].parentElement.addEventListener("mouseleave", zmouseMoveStarRatingLeave, false);
+document.getElementsByClassName(className)[i].parentElement.addEventListener("mouseleave", function(){ zmouseMoveStarRatingLeave(fncLeave) }, false);
 
-document.getElementsByClassName(className)[i].parentElement.addEventListener("touchstart", zmouseMoveStarRatingTouch, false);
-document.getElementsByClassName(className)[i].parentElement.addEventListener("touchend", function(){zmouseMoveStarRatingLeaveTouch(fnc)}, false);
-document.getElementsByClassName(className)[i].parentElement.addEventListener("touchmove", zmouseMoveStarRatingTouchMove, false);
+document.getElementsByClassName(className)[i].parentElement.addEventListener("touchstart", function(){ zmouseMoveStarRatingTouch(fncMove) }, false);
+document.getElementsByClassName(className)[i].parentElement.addEventListener("touchend", function(){zmouseMoveStarRatingLeaveTouch(fnc, fncLeave)}, false);
+document.getElementsByClassName(className)[i].parentElement.addEventListener("touchmove", function(){zmouseMoveStarRatingTouchMove(fncMove)}, false);
 }
 
 }
 
-function zmouseMoveStarRating(){
+function zmouseMoveStarRating(fncMove){
     if(mouseClickedStarRating==false){
         if(event.target.classList.contains("starRatingContainer")){
             let myDiv = event.target.getElementsByTagName("DIV")[0];
@@ -72,8 +72,9 @@ function zmouseMoveStarRating(){
                 }else{
                 /* myDiv.style.width= myDiv.style.maxWidth;  */ 
                 }
-         myDiv.title = (parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2);
+         /* myDiv.title = (parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2); */
             }
+            fncMove((parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2), myDiv, false);
 
     }else if(event.target.classList.contains("emptyStarRating")){
      
@@ -91,8 +92,9 @@ function zmouseMoveStarRating(){
             }else{
             /* event.target.style.width =  event.target.style.maxWidth; */
             }
-            event.target.title = (parseInt(event.target.parentElement.style.width)/parseInt(event.target.parentElement.style.backgroundSize)).toFixed(2);
+            /* event.target.title = (parseInt(event.target.parentElement.style.width)/parseInt(event.target.parentElement.style.backgroundSize)).toFixed(2); */
         }
+        fncMove((parseInt(event.target.parentElement.style.width)/parseInt(event.target.parentElement.style.backgroundSize)).toFixed(2), event.target.parentElement, false);
 
         }else{
 
@@ -110,8 +112,9 @@ function zmouseMoveStarRating(){
             }else{
             /* event.target.style.width =  event.target.style.maxWidth; */
             }
-            event.target.title = (parseInt(event.target.style.width)/parseInt(event.target.style.backgroundSize)).toFixed(2);
+            /* event.target.title = (parseInt(event.target.style.width)/parseInt(event.target.style.backgroundSize)).toFixed(2); */
         }
+        fncMove((parseInt(event.target.style.width)/parseInt(event.target.style.backgroundSize)).toFixed(2), event.target, false);
 
             }
         }
@@ -143,7 +146,7 @@ function zmouseMoveStarRating(){
 }
 
 
-function zmouseMoveStarRatingLeave(){
+function zmouseMoveStarRatingLeave(fncLeave){
     if(!event.target.classList.contains("starRatingContainer")){
      /*    if(!event.target.classList.contains("readOnlyStarRating")){
     event.target.style.width=event.target.dataset.rating*parseInt(event.target.style.backgroundSize)+"px";
@@ -155,19 +158,34 @@ function zmouseMoveStarRatingLeave(){
                 myDiv.style.width=myDiv.dataset.rating*parseInt(myDiv.style.backgroundSize)+"px";
                 mouseClickedStarRating=false;
             }
+            fncLeave((parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2), myDiv, false);
         }
     }
     
 
-    function zmouseMoveStarRatingTouch(){
+    function zmouseMoveStarRatingTouch(fncMove){
         try{
        event.preventDefault();
         }catch(err){
 
         }
+
+        if(event.target.classList.contains("starRatingContainer")){
+
+            let myDiv = event.target.getElementsByTagName("DIV")[0];
+            fncMove((parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2), myDiv, true);
+
+        }else if(event.target.classList.contains("emptyStarRating")){
+           
+            fncMove((parseInt(event.target.parentElement.style.width)/parseInt(event.target.parentElement.style.backgroundSize)).toFixed(2), event.target.parentElement, true);
+
+        }else{
+            fncMove((parseInt(event.target.style.width)/parseInt(event.target.style.backgroundSize)).toFixed(2), event.target, true);
         }
 
-        function zmouseMoveStarRatingLeaveTouch(fnc){
+        }
+
+        function zmouseMoveStarRatingLeaveTouch(fnc, fncLeave){
             
             if(event.target.classList.contains("starRatingContainer")){
                 let myDiv = event.target.getElementsByTagName("DIV")[0];
@@ -185,6 +203,7 @@ function zmouseMoveStarRatingLeave(){
                     }
                 myDiv.dataset.rating=(parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2);
                 fnc(myDiv.dataset.rating, myDiv);
+                fncLeave(myDiv.dataset.rating, myDiv, true);
                 }
             }else if(event.target.classList.contains("emptyStarRating")){
                 if(!event.target.parentElement.classList.contains("readOnlyStarRating")){
@@ -203,6 +222,7 @@ function zmouseMoveStarRatingLeave(){
                     }
                     event.target.parentElement.dataset.rating=(parseInt(event.target.parentElement.style.width)/parseInt(event.target.parentElement.style.backgroundSize)).toFixed(2);
                     fnc(event.target.parentElement.dataset.rating, event.target.parentElement);
+                    fncLeave(event.target.parentElement.dataset.rating, event.target.parentElement, true);
                     }
 
             }else{
@@ -228,7 +248,7 @@ function zmouseMoveStarRatingLeave(){
             }
         }
 
-        function zmouseMoveStarRatingTouchMove(){
+        function zmouseMoveStarRatingTouchMove(fncMove){
            
             if(event.target.classList.contains("starRatingContainer")){
 
@@ -243,6 +263,7 @@ function zmouseMoveStarRatingLeave(){
                     }
 
                 }
+                fncMove((parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2), myDiv, true);
 
             }else if(event.target.classList.contains("emptyStarRating")){
                 if(!event.target.parentElement.classList.contains("readOnlyStarRating")){
@@ -255,6 +276,7 @@ function zmouseMoveStarRatingLeave(){
                     }
                    
                     }
+                    fncMove((parseInt(event.target.parentElement.style.width)/parseInt(event.target.parentElement.style.backgroundSize)).toFixed(2), event.target.parentElement, true);
             }else{
 
                 if(!event.target.classList.contains("readOnlyStarRating")){
@@ -267,6 +289,7 @@ function zmouseMoveStarRatingLeave(){
                     }
                    
                     }
+                    fncMove((parseInt(event.target.style.width)/parseInt(event.target.style.backgroundSize)).toFixed(2), event.target, true);
 
             }
 
