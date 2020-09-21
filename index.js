@@ -128,19 +128,19 @@ function zmouseMoveStarRating(fncMove){
             if(!myDiv.classList.contains("readOnlyStarRating")){
             mouseClickedStarRating=true;
            myDiv.dataset.rating=(parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2);
-            fnc(myDiv.dataset.rating, myDiv);
+            fnc(myDiv.dataset.rating, myDiv, false);
             }
         }else if(event.target.classList.contains("emptyStarRating")){
             if(!event.target.parentElement.classList.contains("readOnlyStarRating")){
                 mouseClickedStarRating=true;
                 event.target.parentElement.dataset.rating=(parseInt(event.target.parentElement.style.width)/parseInt(event.target.parentElement.style.backgroundSize)).toFixed(2);
-                fnc(event.target.parentElement.dataset.rating, event.target.parentElement);
+                fnc(event.target.parentElement.dataset.rating, event.target.parentElement, false);
                 }
         }else{
             if(!event.target.classList.contains("readOnlyStarRating")){
                 mouseClickedStarRating=true;
                 event.target.dataset.rating=(parseInt(event.target.style.width)/parseInt(event.target.style.backgroundSize)).toFixed(2);
-                fnc(event.target.dataset.rating, event.target);
+                fnc(event.target.dataset.rating, event.target, false);
                 }
         }
 }
@@ -202,9 +202,9 @@ function zmouseMoveStarRatingLeave(fncLeave){
                         myDiv.style.width=myDiv.style.maxWidth;      
                     }
                 myDiv.dataset.rating=(parseInt(myDiv.style.width)/parseInt(myDiv.style.backgroundSize)).toFixed(2);
-                fnc(myDiv.dataset.rating, myDiv);
-                fncLeave(myDiv.dataset.rating, myDiv, true);
+                fnc(myDiv.dataset.rating, myDiv, true);
                 }
+                fncLeave(myDiv.dataset.rating, myDiv, true);
             }else if(event.target.classList.contains("emptyStarRating")){
                 if(!event.target.parentElement.classList.contains("readOnlyStarRating")){
                     if((event.changedTouches[0].clientX-event.target.parentElement.getBoundingClientRect().left)<=parseInt(event.target.parentElement.style.maxWidth)){
@@ -221,9 +221,9 @@ function zmouseMoveStarRatingLeave(fncLeave){
                         event.target.parentElement.style.width=event.target.parentElement.style.maxWidth;    
                     }
                     event.target.parentElement.dataset.rating=(parseInt(event.target.parentElement.style.width)/parseInt(event.target.parentElement.style.backgroundSize)).toFixed(2);
-                    fnc(event.target.parentElement.dataset.rating, event.target.parentElement);
-                    fncLeave(event.target.parentElement.dataset.rating, event.target.parentElement, true);
+                    fnc(event.target.parentElement.dataset.rating, event.target.parentElement, true);
                     }
+                    fncLeave(event.target.parentElement.dataset.rating, event.target.parentElement, true);
 
             }else{
 
@@ -242,8 +242,9 @@ function zmouseMoveStarRatingLeave(fncLeave){
                         event.target.style.width=event.target.style.maxWidth;    
                     }
                     event.target.dataset.rating=(parseInt(event.target.style.width)/parseInt(event.target.style.backgroundSize)).toFixed(2);
-                    fnc(event.target.dataset.rating, event.target);
+                    fnc(event.target.dataset.rating, event.target, true);
                     }
+                    fncLeave(event.target.dataset.rating, event.target, true)
 
             }
         }
