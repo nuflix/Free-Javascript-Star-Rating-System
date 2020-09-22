@@ -36,7 +36,7 @@ for(let i=0; i<obj.length; i++){
     }
 
     document.getElementsByClassName(className)[i].style.maxWidth = obj[i].starSize*obj[i].maxRating + "px";
-    document.getElementsByClassName(className)[i].title = obj[i].rating;
+    /* document.getElementsByClassName(className)[i].title = obj[i].rating; */
     document.getElementsByClassName(className)[i].dataset.rating = obj[i].rating;
     document.getElementsByClassName(className)[i].dataset.step = obj[i].step;
     if(obj[i].readOnly==="yes"){
