@@ -31,7 +31,7 @@
     <p>To use rating system you just have to make div with class name "starRatingContainer" and make another div element inside it with class name of your choice:</p>
     <pre><code>&lt;div class="starRatingContainer">&lt;div class="anyClassName">&lt;/div>&lt;/div></code></pre>
     and call this function:
-    <pre><code>rateSystem(string, arrayOfJsonObjects, function(rating, triggeredElement){});</code></pre>
+    <div style="border:solid 1px;border-color:black;padding:2px;overflow:auto;"><pre><code>     rateSystem(string, arrayOfJsonObjects, function(rating, triggeredElement){});</code></pre></div>
     <ul>
     <li>First argument is a string. It is class name of div elements that will load your star rating.</li>
     <li>Second argument is array of JSON objects. Each JSON object sets all properties of a div that has class name equal to the first argument.</li>
@@ -46,12 +46,12 @@
        <li>This website got a comment section. </li>
     </ul>
     <p>You still can use the same code as in older versions but now you just have some more optional things you can use if you want some more control over your star rating</p>
-    <div style="border:solid 1px;border-color:red;padding:2px;overflow:auto;"><pre>rateSystem(string, arrayOfJsonObjects, function(rating, triggeredElement, isTouchScreen){}, function(rating, triggeredElement, isTouchScreen){}, function(rating, triggeredElement, isTouchScreen){});</pre></div>
+    <div style="border:solid 2px;border-color:red;padding:2px;overflow:auto;"><pre><code>   rateSystem(string, arrayOfJsonObjects, function(rating, triggeredElement, isTouchScreen){}, function(rating, triggeredElement, isTouchScreen){}, function(rating, triggeredElement, isTouchScreen){});</code></pre></div>
 
     <h2>Examples</h2>
 
     <h3>html</h3>
-    <pre><code>
+    <div style="border:solid 1px;border-color:black;padding:2px;overflow:auto;"><pre><code>
         //example 1
         &lt;div&gt;  &lt;div class="starRatingContainer"&gt; &lt;div class="className"&gt; &lt;/div&gt; &lt;/div&gt;  &lt;div class="ratingHolder"&gt; &lt;/div&gt; &lt;/div&gt;
     
@@ -73,10 +73,10 @@
         //empty div for custom tooltip (version: 1.2, date: 22.09.2020)
         &lt;div id="customTooltip" style="background-color:slategrey; color:white; padding: 5px 20px; border-radius: 25px; position:fixed; display:none;"&gt;&lt;/div&gt;
 
-    </code></pre>
+    </code></pre></div>
 
     <h3>javaScript</h3>
-    <pre><code>
+    <div style="border:solid 1px;border-color:black;padding:2px;overflow:auto;"><pre><code>
     &lt;script>
 
     //setting variables
@@ -99,7 +99,7 @@
     rateSystem("update1.2", [properties2[2]], function(rating, ratingTargetElement, isTouchScreen){ ratingTargetElement.parentElement.parentElement.getElementsByClassName("ratingHolder")[0].innerHTML = rating; }, function(rating, ratingTargetElement, isTouchScreen){document.getElementById("customTooltip").innerHTML=rating; if(rating>4.5){document.getElementById("customTooltip").innerHTML="perfect :)"} document.getElementById("customTooltip").style.top=(ratingTargetElement.getBoundingClientRect().bottom + 2)+"px"; document.getElementById("customTooltip").style.display = "inline-block"; if(isTouchScreen){document.getElementById("customTooltip").style.backgroundColor="purple";} }, function(rating, ratingTargetElement, isTouchScreen){ document.getElementById("customTooltip").style.display="none"; });
 
     &lt;/script>
-    </code></pre>
+    </code></pre></div>
 
     <h2>Result</h2>
  
